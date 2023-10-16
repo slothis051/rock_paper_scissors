@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            let chance = Math.random();
+            if (chance <= 0.33)     return 'rock';
+            else if (chance <=0.67) return 'paper';
+            else                    return 'scissors';
+        }
+        function playRound(playerSelection,computerSelection) {
+            playerSelection.toLowerCase();
+            if (playerSelection === computerSelection) {return 'Draw!'}
+            else if (playerSelection === 'rock'     && computerSelection === 'paper')    {return `You lose! ${computerSelection} wins ${playerSelection}`;}
+            else if (playerSelection === 'paper'    && computerSelection === 'scissors') {return `You lose! ${computerSelection} wins ${playerSelection}`;}
+            else if (playerSelection === 'scissors' && computerSelection === 'rock')     {return `You lose! ${computerSelection} wins ${playerSelection}`;}
+            else if (playerSelection === 'rock'     && computerSelection === 'scissors') {return `You win! ${playerSelection} wins ${computerSelection}`;}
+            else if (playerSelection === 'paper'    && computerSelection === 'rock')     {return `You win! ${playerSelection} wins ${computerSelection}`;}
+            else if (playerSelection === 'scissors' && computerSelection === 'paper')    {return `You win! ${playerSelection} wins ${computerSelection}`;}
+            else {return `Hey, you input is ${playerSelection}. It shall only be 'rock', 'paper' or 'scissors'`}
+        }
+
+        function playRound(playerSelection,computerSelection) {
+            playerSelection.toLowerCase();
+            if (playerSelection === computerSelection) {return 0}
+            else if (playerSelection === 'rock'     && computerSelection === 'paper')    {return -1;}
+            else if (playerSelection === 'paper'    && computerSelection === 'scissors') {return -1;}
+            else if (playerSelection === 'scissors' && computerSelection === 'rock')     {return -1;}
+            else if (playerSelection === 'rock'     && computerSelection === 'scissors') {return 1;}
+            else if (playerSelection === 'paper'    && computerSelection === 'rock')     {return 1;}
+            else if (playerSelection === 'scissors' && computerSelection === 'paper')    {return 1;}
+            else {return 0}
+        }
+
+        function game() {
+            let scoreBoard = 0;
+            let playerSelection;
+            let i = 0;
+            while (i < 5){
+                console.log(`Remaining rounds: ${5-i}`);
+                playerSelection = prompt(`Enter 'rock', 'paper' or 'scissors'`);
+                result = playRound(playerSelection,getComputerChoice());
+                if (result === 0) {
+                    continue;
+                }
+                else {
+                    scoreBoard+=result;
+                    i++;
+                }
+            }
+            if (scoreBoard > 0) console.log(`You win!`);
+            else console.log(`You lose!`); 
+        }
+
+        game()
+    </script>
+</body>
+</html>
